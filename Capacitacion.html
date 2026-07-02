@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapacitaInclusión - Autismo en el Aula</title>
+    <style>
+        :root {
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-main: #2c3e50;
+            --primary: #4a90e2;
+            --teacher-color: #9b59b6;
+            --student-color: #2ecc71;
+            --accent: #f1c40f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--teacher-color));
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            gap: 25px;
+        }
+
+        /* Selector de Roles */
+        .role-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .role-btn {
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-teachers { background-color: var(--teacher-color); }
+        .btn-students { background-color: var(--student-color); }
+
+        .role-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Paneles de Contenido */
+        .panel {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: none; /* Se muestran dinámicamente */
+        }
+
+        .panel.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        h2 {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+
+        .panel-teachers h2 { border-color: var(--teacher-color); }
+        .panel-students h2 { border-color: var(--student-color); }
+
+        /* Módulos de Aprendizaje */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .module-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 15px;
+            background: #f8fafc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 4px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        .badge-strategy { background-color: #e67e22; }
+        .badge-empathy { background-color: #3498db; }
+
+        /* Trivia / Test */
+        .quiz-section {
+            margin-top: 25px;
+            background: #fff9e6;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent);
+        }
+
+        .quiz-option {
+            display: block;
+            background: white;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: #f0f4f8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CapacitaInclusión 🧩</h1>
+        <p>Programa de formación en Neurodiversidad y Autismo para la Comunidad Educativa</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- SELECCIÓN DE ROL -->
+        <section class="role-selector">
+            <button class="role-btn btn-teachers" onclick="switchRole('teachers')">
+                <span>👩‍🏫 Panel para Maestros</span>
+                <small>Estrategias pedagógicas y gestión de aula</small>
+            </button>
+            <button class="role-btn btn-students" onclick="switchRole('students')">
+                <span>🎒 Panel para Estudiantes</span>
+                <small>Empatía, compañerismo y concienciación</small>
+            </button>
+        </section>
+
+        <!-- PANEL DE MAESTROS -->
+        <main id="panel-teachers" class="panel panel-teachers">
+            <h2>Capacitación Docente: Estrategias de Inclusión</h2>
+            <p>Aprende las metodologías clave para diseñar un entorno educativo accesible para estudiantes dentro del Espectro Autista (CEA).</p>
+            
+            <div class="modules-grid">
+                <div class="module-card">
+                    <span class="badge badge-strategy">Metodología</span>
+                    <h3>1. Anticipación y Predictibilidad</h3>
+                    <p>Las transiciones repentinas pueden generar ansiedad. Usa agendas visuales diarias en el pizarrón para que el alumno sepa exactamente qué pasará después.</p>
+                </div>
+                <div class="module-card">
+                    <span class="badge badge-strategy">Adaptación Sensorial</span>
+                    <h3>2. Gestión del Entorno</h3>
+                    <p>Identifica estímulos abrumadores (luces parpadeantes, ruidos estridentes). Permite el uso de auriculares de cancelación de ruido si es necesario durante momentos ruidosos.</p>
+                </div>
+                <div class="module-card">
+                    <span class="badge badge-strategy">Evaluación alternativa</span>
+                    <h3>3. Evaluaciones Flexibles</h3>
+                    <p>Adapta los exámenes reduciendo la carga de texto abstracto, priorizando preguntas de opción múltiple con apoyo visual o permitiendo respuestas orales.</p>
+                </div>
+            </div>
+
+            <!-- Mini Caso de Estudio para Docentes -->
+            <div class="quiz-section">
+                <h3>🧠 Caso Práctico Docente</h3>
+                <p><strong>Situación:</strong> Lucas, un estudiante con autismo, empieza a balancearse intensamente y taparse los oídos durante un trabajo grupal muy ruidoso. ¿Qué deberías hacer?</p>
+                <div class="quiz-option" onclick="evaluarDocente(false, this)">Pedirle firmemente que se quede sentado y termine el trabajo.</div>
+                <div class="quiz-option" onclick="evaluarDocente(true, this)">Permitirle ir a un "esquina de la calma" o usar sus auriculares reductores de ruido.</div>
+                <div class="quiz-option" onclick="evaluarDocente(false, this)">Llamar de inmediato a la dirección porque es un problema de conducta.</div>
+                <p id="resultado-docente" style="font-weight: bold; margin-top: 10px;"></p>
+            </div>
+        </main>
+
+        <!-- PANEL DE ESTUDIANTES -->
+        <main id="panel-students" class="panel panel-students">
+            <h2>Zona de Compañeros: Entendiendo el Autismo</h2>
+            <p>¡Hola! Todos somos diferentes y eso es lo que hace genial a nuestro salón. Aquí aprenderás cómo ser un gran compañero de equipo y amigo.</p>
+            
+            <div class="modules-grid">
+                <div class="module-card">
+                    <span class="badge badge-empathy">Comunicación</span>
+                    <h3>🗣️ Formas de Comunicarse</h3>
+                    <p>Algunos compañeros con autismo pueden no hablar mucho o usar imágenes para expresarse. Habla con frases claras, dales tiempo para responder y sé paciente.</p>
+                </div>
+                <div class="module-card">
+                    <span class="badge badge-empathy">Intereses</span>
+                    <h3>🎮 Intereses Súper Especiales</h3>
+                    <p>A muchas personas autistas les encantan ciertos temas a un nivel experto (como los dinosaurios, el espacio o los trenes). ¡Pregúntales sobre eso, les encantará compartirlo!</p>
+                </div>
+                <div class="module-card">
+                    <span class="badge badge-empathy">Juego Inclusivo</span>
+                    <h3>🤝 Invita a Participar</h3>
+                    <p>A veces no saben cómo unirse a un juego grupal y se quedan solos. Un simple: *"¿Quieres jugar con nosotros a las escondidas?"* puede hacer una enorme diferencia.</p>
+                </div>
+            </div>
+
+            <!-- Juego de Empatía para Estudiantes -->
+            <div class="quiz-section">
+                <h3>🎮 Misión de Empatía</h3>
+                <p><strong>Pregunta:</strong> Si ves a un compañero con autismo jugando solo en el recreo y parece que quiere integrarse, ¿cuál es la mejor acción?</p>
+                <div class="quiz-option" onclick="evaluarEstudiante(false, this)">Ignorarlo, porque seguro prefiere estar solo todo el tiempo.</div>
+                <div class="quiz-option" onclick="evaluarEstudiante(true, this)">Acercarte amablemente e invitarlo a compartir el juego explicándole las reglas de forma sencilla.</div>
+                <div class="quiz-option" onclick="evaluarEstudiante(false, this)">Burlarte de la forma en que se mueve o habla.</div>
+                <p id="resultado-estudiante" style="font-weight: bold; margin-top: 10px;"></p>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // --- LÓGICA: INTERCAMBIO DE PANELES (ROLES) ---
+        function switchRole(role) {
+            // Remover estado activo de ambos paneles
+            document.getElementById('panel-teachers').classList.remove('active');
+            document.getElementById('panel-students').classList.remove('active');
+            
+            // Activar el panel seleccionado
+            if (role === 'teachers') {
+                document.getElementById('panel-teachers').classList.add('active');
+            } else if (role === 'students') {
+                document.getElementById('panel-students').classList.add('active');
+            }
+        }
+
+        // --- LÓGICA: FEEDBACK TRIVIA DOCENTE ---
+        function evaluarDocente(esCorrecto, elemento) {
+            const resultado = document.getElementById('resultado-docente');
+            if (esCorrecto) {
+                resultado.textContent = "¡Correcto! 🌟 Reducir la sobrecarga sensorial y ofrecer un espacio seguro es una estrategia de regulación fundamental.";
+                resultado.style.color = "#2ecc71";
+            } else {
+                resultado.textContent = "Inténtalo de nuevo. ❌ Recuerda que no es un problema de mala conducta, sino una respuesta a la sobreestimulación auditiva.";
+                resultado.style.color = "#e74c3c";
+            }
+        }
+
+        // --- LÓGICA: FEEDBACK TRIVIA ESTUDIANTE ---
+        function evaluarEstudiante(esCorrecto, elemento) {
+            const resultado = document.getElementById('resultado-estudiante');
+            if (esCorrecto) {
+                resultado.textContent = "¡Excelente elección! 🚀 Eres un gran compañero. La inclusión empieza con pequeñas invitaciones.";
+                resultado.style.color = "#2ecc71";
+            } else {
+                resultado.textContent = "Piénsalo otra vez. 🔍 A veces las personas con autismo quieren hacer amigos, pero les cuesta dar el primer paso. ¡Ayúdalos!";
+                resultado.style.color = "#e74c3c";
+            }
+        }
+    </script>
+</body>
+</html>
